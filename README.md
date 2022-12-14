@@ -86,35 +86,35 @@ Tras acceder con nuestro usuario y contraseña de usuario normal nos aparecerá 
 
 En la opción 1 podremos buscar alojamientos, para ello nos pedirá la localidad en la que queremos buscar, el numero de huéspedes, la fecha de entrada y la fecha de salida. Las fechas deberán ser escritas en el siguiente formato: (YYYY-MM-dd). Ej: "2022-12-24".
 
-![image-20221214074252785](C:\Users\Adrian\AppData\Roaming\Typora\typora-user-images\image-20221214074252785.png)
+![image-20221214074252785](https://cdn.discordapp.com/attachments/1052443807112773724/1052492986082148394/image-20221214074252785.png)
 
 Cuando nos salgan la vivienda o viviendas elegiremos escribiendo el número de ID del alojamiento deseado, en este caso seria "1111".
 
-![image-20221214074449715](C:\Users\Adrian\AppData\Roaming\Typora\typora-user-images\image-20221214074449715.png)
+![image-20221214074449715](https://cdn.discordapp.com/attachments/1052443807112773724/1052493154835779706/image-20221214074449715.png)
 
 Confirmaremos la reserva y si todo ha ido correctamente nos saldra un mensaje como el anterior.
 
 En la opción 2 podremos ver los datos de nuestra reserva.
 
-![image-20221214075708599](C:\Users\Adrian\AppData\Roaming\Typora\typora-user-images\image-20221214075708599.png)
+![image-20221214075708599](https://cdn.discordapp.com/attachments/1052443807112773724/1052493309500723240/image-20221214075708599.png)
 
 En la opción 3 podremos modificar la reserva, ahi nos dira si la queremos eliminar y posteriormente nos dirá que si queremos añadir otra reserva hagamos una búsqueda de nuevo.
 
-![image-20221214075809058](C:\Users\Adrian\AppData\Roaming\Typora\typora-user-images\image-20221214075809058.png)
+![image-20221214075809058](https://cdn.discordapp.com/attachments/1052443807112773724/1052493490933747742/image-20221214075809058.png)
 
 En la opcion 4 podremos ver nuestro perfil, el cual de una forma cifrada nos mostrará nuestra contraseña. 
 
 ¡No te alarmes! Esa contraseña tan larga no es la tuya,  simplemente es para que tengas constacia por si la deseas cambiar en cualquier momento. Te recomendamos guardar tu contraseña en un lugar seguro.
 
-![image-20221214075921940](C:\Users\Adrian\AppData\Roaming\Typora\typora-user-images\image-20221214075921940.png)
+![image-20221214075921940](https://cdn.discordapp.com/attachments/1052443807112773724/1052493612388196383/image-20221214075921940.png)
 
 En la opción 5 podremos modificar nuestro perfil, ahi tendremos un submenú el cual nos indicará que queremos modificar. El procedimiento es parecido al del registro.
 
-![image-20221214080023838](C:\Users\Adrian\AppData\Roaming\Typora\typora-user-images\image-20221214080023838.png)
+![image-20221214080023838](https://cdn.discordapp.com/attachments/1052443807112773724/1052493837521670195/image-20221214080023838.png)
 
 Por último tendremos la opción 6 en el cual podremos cerrar sesión volviendo al menu principal donde deberemos iniciar sesión de nuevo si queremos modificar nuestro perfil.
 
-![image-20221214080153009](C:\Users\Adrian\AppData\Roaming\Typora\typora-user-images\image-20221214080153009.png)
+![image-20221214080153009](https://cdn.discordapp.com/attachments/1052443807112773724/1052494120490389545/image-20221214080153009.png)
 
 
 
@@ -126,7 +126,7 @@ Por último tendremos la opción 6 en el cual podremos cerrar sesión volviendo 
 
 En la opción 1 podremos ver las viviendas que tenemos, si no tenemos ninguna nos lanzará un mensaje diciendo que no tenemos ninguna disponible.
 
-![image-20221214073128753](C:\Users\Adrian\AppData\Roaming\Typora\typora-user-images\image-20221214073128753.png)
+![image-20221214073128753](https://cdn.discordapp.com/attachments/1052443807112773724/1052494330876678195/image-20221214073128753.png)
 
 En la opcion 2 si no tenemos ninguna vivienda podremos añadirla y si no la editaremos. Para editarla tendremos que meter todos los datos nuevamente ya actualizados.
 
@@ -134,11 +134,11 @@ En la opcion 2 si no tenemos ninguna vivienda podremos añadirla y si no la edit
 
 En la opción 3 podremos ver las reservas que los usuarios han hecho de la vivienda.
 
-![image-20221214080258504](C:\Users\Adrian\AppData\Roaming\Typora\typora-user-images\image-20221214080258504.png)
+![image-20221214080258504](https://cdn.discordapp.com/attachments/1052443807112773724/1052494458744209408/image-20221214080258504.png)
 
 En la opción 4 estableceremos un periodo de no disponible en su vivienda. Esto sirve por ejemplo por si quiere ir tranquilamente a su propiedad y que la gente no lo reserve en ese periodo. Se pedira la fecha inicial y fecha de salida, entre esas fechas no habrá ninguna reserva.
 
-![image-20221214073415253](C:\Users\Adrian\AppData\Roaming\Typora\typora-user-images\image-20221214073415253.png)
+![image-20221214073415253](https://cdn.discordapp.com/attachments/1052443807112773724/1052494540096938054/image-20221214073415253.png)
 
 En la opcion 5 podremos ver nuestro perfil como ya hemos dicho anteriormente.
 
@@ -154,19 +154,19 @@ En la opción 7 podremos cerrar sesión como ya hemos dicho anteriormente.
 
 El menu de administrador se compone por las siguientes opciones:
 
-![image-20221214082946026](C:\Users\Adrian\AppData\Roaming\Typora\typora-user-images\image-20221214082946026.png)
+![image-20221214082946026](https://cdn.discordapp.com/attachments/1052443807112773724/1052494746226020505/image-20221214082946026.png)
 
 La opción 1 veremos todas las viviendas que esten en alquiler. En su defecto si no hay ninguna nos avisará.
 
-![image-20221214083043248](C:\Users\Adrian\AppData\Roaming\Typora\typora-user-images\image-20221214083043248.png)
+![image-20221214083043248](https://cdn.discordapp.com/attachments/1052443807112773724/1052494827645833226/image-20221214083043248.png)
 
 La opción 2 podremos ver a los usuarios registrados, en caso de que no hubiese ninguno nos avisaría.
 
-![image-20221214083151992](C:\Users\Adrian\AppData\Roaming\Typora\typora-user-images\image-20221214083151992.png)
+![image-20221214083151992](https://cdn.discordapp.com/attachments/1052443807112773724/1052494929445797918/image-20221214083151992.png)
 
 La opcion 3 podremos ver todas las reservas que haya en el sistema
 
-![image-20221214083331798](C:\Users\Adrian\AppData\Roaming\Typora\typora-user-images\image-20221214083331798.png)
+![image-20221214083331798](https://cdn.discordapp.com/attachments/1052443807112773724/1052495061159530516/image-20221214083331798.png)
 
 Y las demás opciones son iguales que los usuarios normales y propietarios.
 
