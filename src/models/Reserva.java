@@ -2,6 +2,7 @@ package models;
 
 import java.time.LocalDate;
 
+import static java.time.temporal.ChronoUnit.DAYS;
 import static java.time.temporal.ChronoUnit.MONTHS;
 
 public class Reserva {
@@ -18,7 +19,7 @@ public class Reserva {
         this.id = "696" + numId;
         this.fechaInicio = fechaInicio;
         this.fechaFinal = fechaFinal;
-        this.numNoches = MONTHS.between(fechaFinal, fechaInicio);
+        this.numNoches = DAYS.between(fechaInicio, fechaFinal);
         this.vivienda = vivienda;
         this.usuario = usuario;
         numId++;
@@ -87,11 +88,6 @@ public class Reserva {
         this.usuario = usuario;
     }
 
-    public int alquilarEntreDias(LocalDate fechaInicio, LocalDate fechaFinal) {
-        if (fechaInicio.isBefore(fechaFinal)) return 1;
-        if (fechaInicio.isEqual(fechaFinal)) return 2;
-        return -1;
-    }
 
 
     @Override

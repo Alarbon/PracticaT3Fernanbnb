@@ -255,22 +255,6 @@ public class Fernanbnb {
             case 22 -> p2.setVivienda(vivienda);
         }
     }
-
-    public void modificaPrecioVivienda(Vivienda vivienda, double precio) {
-        vivienda.setPrecioNoche(precio);
-    }
-
-    public void modificaHuesped(Vivienda vivienda, int huespedMax) {
-        vivienda.setHuespedMax(huespedMax);
-    }
-
-
-    public void modificaTipoVivienda(Vivienda vivienda, int numTipoVivienda) {
-        if (numTipoVivienda == 1) vivienda.setTipoVivienda("Piso");
-        else if (numTipoVivienda == 2) vivienda.setTipoVivienda("Casa");
-    }
-
-
     public Vivienda compruebaLocalidad(String localidad) {
         if (p1 != null && p1.getVivienda() != null && p1.getVivienda().getDireccion().getLocalidad().equals(localidad))
             return p1.getVivienda();
@@ -319,18 +303,6 @@ public class Fernanbnb {
 
 
     }
-
-    public boolean compruebaFechaParaReserva(LocalDate fecha, LocalDate fecha2) {
-        return true;
-    }
-
-    public Usuario devuelveUser(int id) {
-        if (id == 1) return u1;
-        if (id == 11) return u2;
-        return null;
-
-    }
-
 
     public static boolean estaFueraDeRango(LocalDate fecha, LocalDate fecha2, LocalDate inicio, LocalDate fin) {
         return (fecha.isBefore(inicio) && fecha2.isBefore(inicio)) || (fecha.isAfter(fin) && fecha2.isAfter(fin));

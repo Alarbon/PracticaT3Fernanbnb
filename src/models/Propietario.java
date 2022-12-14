@@ -80,20 +80,11 @@ public class Propietario {
     }
 
 
-    //metodos
-
-    public String alquilar(Reserva reserva) {
-        if (vivienda.getReserva1() == null) {
-            vivienda.setReserva1(reserva);
-        }
-        if (vivienda.getReserva2() == null) vivienda.setReserva2(reserva);
-        return null;
-    }
-
     //Metodo para combrobar el login
     public boolean login(String usuarioTemp, String claveTemp) {
         return this.nombreUsuario.equals(usuarioTemp) && this.clave.equals(Fernanbnb.codificaClave(claveTemp));
     }
+
     //Metodos para cambiar el perfil
     public void cambiaNombre(String nombre) {
         this.nombre = nombre;
@@ -106,10 +97,10 @@ public class Propietario {
     public void cambiaClave(String clave) {
         this.clave = Fernanbnb.codificaClave(clave);
     }
+
     public void cambiaNumeroTelefono(String numTlf) {
         this.numTlf = numTlf;
     }
-
 
 
     @Override

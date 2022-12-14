@@ -434,7 +434,7 @@ public class Main {
                                                     System.out.println("¿Quiere guardar los datos? (Y/N): ");
                                                     switch (s.nextLine().toUpperCase()) {
                                                         case "Y" -> {
-                                                            f.modificaClave(numGuardaUsuario, numTlf);
+                                                            f.modificaNumeroTelefono(numGuardaUsuario, numTlf);
                                                             Utils.esperar();
                                                             System.out.println("¡Datos actualizados! Pulse enter para continuar.");
                                                             s.nextLine();
@@ -863,20 +863,23 @@ public class Main {
                             op = Integer.parseInt(s.nextLine());
                             switch (op) {
                                 case 1: //Ver todas las viviendas en alquiler
-                                    if (p1.getVivienda() != null) {
+                                    if (p1 != null && p1.getVivienda() != null) {
                                         System.out.println("Esta vivienda le pertenece al usuario propietario " + p1.getNombreUsuario());
                                         System.out.println(p1.getVivienda().toString());
                                         System.out.println();
                                     }
 
-                                    if (p2.getVivienda() != null) {
+                                    if (p2 != null && p2.getVivienda() != null) {
                                         System.out.println("Esta vivienda le pertenece al usuario propietario " + p2.getNombreUsuario());
                                         System.out.println(p2.getVivienda().toString());
                                     }
-                                    if (p1.getVivienda() == null && p2.getVivienda() == null)
+                                    if ((p1 != null && p1.getVivienda() == null) || (p2 != null && p2.getVivienda() == null))
                                         System.out.println("Actualmente no hay viviendas en alquiler.");
+                                    else
+                                        System.out.println("Actualmente no hay usuarios propietarios. Disculpe las molestias.");
                                     System.out.println("Pulse enter para continuar.");
                                     s.nextLine();
+
 
                                     break;
                                 case 2://Ver todos los usuarios del sistema
@@ -910,32 +913,33 @@ public class Main {
                                     s.nextLine();
                                     break;
                                 case 3://Ver todas las reservas de viviendas
-                                    if (u1.getReserva1() == null && u1.getReserva2() == null) {
+                                    if (u1 != null && u1.getReserva1() == null && u1.getReserva2() == null) {
                                         System.out.println("Usted no tiene ninguna reserva.");
                                     }
-                                    if (u1.getReserva1() != null && u1.getReserva2() == null) {
+                                    if (u1 != null && u1.getReserva1() != null && u1.getReserva2() == null) {
                                         System.out.println("Esta es la reserva 1 de " + u1.getNombreUsuario());
                                         System.out.println(u1.getReserva1().toString());
                                     }
-                                    if (u1.getReserva1() != null && u1.getReserva2() != null) {
+                                    if (u1 != null && u1.getReserva1() != null && u1.getReserva2() != null) {
                                         System.out.println("Esta es la reserva 1 de " + u1.getNombreUsuario());
                                         System.out.println(u1.getReserva1().toString());
                                         System.out.println();
                                         System.out.println("Esta es la reserva 2 de " + u1.getNombreUsuario());
                                         System.out.println(u1.getReserva2().toString());
-                                    }
-                                    if (u2.getReserva1() == null && u2.getReserva2() == null)
+                                    } else if (u1 == null) System.out.println("No hay ningun usuario 1");
+                                    if (u2 != null && u2.getReserva1() == null && u2.getReserva2() == null)
                                         System.out.println("Usted no tiene ninguna reserva.");
-                                    if (u2.getReserva1() != null && u2.getReserva2() == null)
+                                    if (u2 != null && u2.getReserva1() != null && u2.getReserva2() == null) {
                                         System.out.println("Esta es la reserva 1 de " + u2.getNombreUsuario());
-                                    System.out.println(u2.getReserva1().toString());
-                                    if (u2.getReserva1() != null && u2.getReserva2() != null) {
+                                        System.out.println(u2.getReserva1().toString());
+                                    }
+                                    if (u2 != null && u2.getReserva1() != null && u2.getReserva2() != null) {
                                         System.out.println("Esta es la reserva 1 de " + u2.getNombreUsuario());
                                         System.out.println(u2.getReserva1().toString());
                                         System.out.println();
                                         System.out.println("Esta es la reserva 2 de " + u2.getNombreUsuario());
                                         System.out.println(u2.getReserva2().toString());
-                                    }
+                                    } else if (u2 == null) System.out.println("No hay ningun usuario 2.");
 
                                     System.out.println("Pulse enter para continuar.");
                                     s.nextLine();
