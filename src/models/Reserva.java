@@ -13,7 +13,7 @@ public class Reserva {
     private Vivienda vivienda;
     private Usuario usuario;
 
-
+    //Constructor
     public Reserva(LocalDate fechaInicio, LocalDate fechaFinal, Vivienda vivienda, Usuario usuario) {
         this.id = "696" + numId;
         this.fechaInicio = fechaInicio;
@@ -24,6 +24,13 @@ public class Reserva {
         numId++;
     }
 
+    //Constructor copia
+    public Reserva(LocalDate fechaInicio, LocalDate fechaFinal) {
+        this.fechaInicio = fechaInicio;
+        this.fechaFinal = fechaFinal;
+    }
+
+    //Getter and setters
     public static int getNumId() {
         return numId;
     }
@@ -80,24 +87,23 @@ public class Reserva {
         this.usuario = usuario;
     }
 
-    public int alquilarEntreDias(LocalDate fechaInicio, LocalDate fechaFinal){
+    public int alquilarEntreDias(LocalDate fechaInicio, LocalDate fechaFinal) {
         if (fechaInicio.isBefore(fechaFinal)) return 1;
         if (fechaInicio.isEqual(fechaFinal)) return 2;
         return -1;
     }
 
 
-
     @Override
     public String toString() {
         return
-                " ┌───────────────────────┤ Reserva con ID:" + id + " ├────────────────────────┐\n" +
+                " \n┌───────────────────────┤ Reserva con ID:" + id + " ├────────────────────────┐\n" +
                         "   -Usuario: " + usuario.getNombre() + "\n" +
-                        "   -Vivienda: " + vivienda.getDireccion().getLocalidad() + " (ID: "+vivienda.getId()+")\n" +
+                        "   -Vivienda: " + vivienda.getDireccion().getLocalidad() + " (ID: " + vivienda.getId() + ")\n" +
                         "   -Noches: " + numNoches + "\n" +
                         "   -Fecha de entrada: " + fechaInicio + "\n" +
                         "   -Fecha de salida: " + fechaFinal + "\n" +
-                        "   -Precio por noche: " + vivienda.getPrecioNoche() + "E; Precio total: " + vivienda.getPrecioNoche()*numNoches + "E\n" +
+                        "   -Precio por noche: " + vivienda.getPrecioNoche() + "E; Precio total: " + vivienda.getPrecioNoche() * numNoches + "E\n" +
                         " └────────────────────────────────────────────────────────────────────────┘\n";
 
     }

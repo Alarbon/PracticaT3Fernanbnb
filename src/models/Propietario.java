@@ -115,7 +115,7 @@ public class Propietario {
     @Override
     public String toString() {
         return "" +
-                " ┌───────────────────┤ ID " + id + " ├───────────────────┐\n" +
+                " \n┌───────────────────┤ ID " + id + " ├───────────────────┐\n" +
                 "   -Nombre: " + nombre + "\n" +
                 "   -Nombre de Usuario: " + nombreUsuario + "\n" +
                 "   -Contraseña: " + clave + "\n" +

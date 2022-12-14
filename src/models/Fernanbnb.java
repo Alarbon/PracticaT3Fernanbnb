@@ -271,7 +271,6 @@ public class Fernanbnb {
     }
 
 
-
     public Vivienda compruebaLocalidad(String localidad) {
         if (p1 != null && p1.getVivienda() != null && p1.getVivienda().getDireccion().getLocalidad().equals(localidad))
             return p1.getVivienda();
@@ -289,32 +288,40 @@ public class Fernanbnb {
 
     }
 
-    public boolean compruebaFechaParaReserva(LocalDate fecha, LocalDate fecha2, int huespedes, String localidad) {
-
+    public boolean compruebaFechaParaReserva(LocalDate fechaIniConsole, LocalDate fechaFinConsole, int huespedes, String localidad) {
 
         if (compruebaHuesped(huespedes, localidad) != null && u1 != null && u1.getReserva1() != null &&
                 u1.getReserva1().getVivienda() == compruebaHuesped(huespedes, localidad) &&
-                !estaFueraDeRango(fecha, fecha2, u1.getReserva1().getFechaInicio(), u1.getReserva1().getFechaFinal()))
+                (!estaFueraDeRango(fechaIniConsole, fechaFinConsole, u1.getReserva1().getFechaInicio(), u1.getReserva1().getFechaFinal())) || p1 != null && p1.getVivienda().getReserva1() != null &&
+                (!estaFueraDeRango(fechaIniConsole, fechaFinConsole, p1.getVivienda().getReserva1().getFechaInicio(), p1.getVivienda().getReserva1().getFechaFinal())))
             return false;
+
 
         if (compruebaHuesped(huespedes, localidad) != null && u1 != null && u1.getReserva2() != null &&
                 u1.getReserva2().getVivienda() == compruebaHuesped(huespedes, localidad) &&
-                !estaFueraDeRango(fecha, fecha2, u1.getReserva2().getFechaInicio(), u1.getReserva2().getFechaFinal()))
+                (!estaFueraDeRango(fechaIniConsole, fechaFinConsole, u1.getReserva2().getFechaInicio(), u1.getReserva2().getFechaFinal())) || p1 != null && p1.getVivienda().getReserva2() != null &&
+                (!estaFueraDeRango(fechaIniConsole, fechaFinConsole, p1.getVivienda().getReserva2().getFechaInicio(), p1.getVivienda().getReserva2().getFechaFinal())))
             return false;
 
         if (compruebaHuesped(huespedes, localidad) != null && u2 != null && u2.getReserva1() != null &&
                 u2.getReserva1().getVivienda() == compruebaHuesped(huespedes, localidad) &&
-                !estaFueraDeRango(fecha, fecha2, u2.getReserva1().getFechaInicio(), u2.getReserva1().getFechaFinal()))
+                (!estaFueraDeRango(fechaIniConsole, fechaFinConsole, u2.getReserva1().getFechaInicio(), u2.getReserva1().getFechaFinal())) || p2 != null && p2.getVivienda().getReserva1() != null &&
+                (!estaFueraDeRango(fechaIniConsole, fechaFinConsole, p2.getVivienda().getReserva1().getFechaInicio(), p2.getVivienda().getReserva1().getFechaFinal())))
             return false;
 
         if (compruebaHuesped(huespedes, localidad) != null && u2 != null && u2.getReserva2() != null &&
                 u2.getReserva2().getVivienda() == compruebaHuesped(huespedes, localidad) &&
-                !estaFueraDeRango(fecha, fecha2, u2.getReserva2().getFechaInicio(), u2.getReserva2().getFechaFinal()))
+                (!estaFueraDeRango(fechaIniConsole, fechaFinConsole, u2.getReserva2().getFechaInicio(), u2.getReserva2().getFechaFinal())) || p2 != null && p2.getVivienda().getReserva2() != null &&
+                (!estaFueraDeRango(fechaIniConsole, fechaFinConsole, p2.getVivienda().getReserva2().getFechaInicio(), p2.getVivienda().getReserva2().getFechaFinal())))
             return false;
 
         return true;
 
 
+    }
+
+    public boolean compruebaFechaParaReserva(LocalDate fecha, LocalDate fecha2) {
+        return true;
     }
 
     public Usuario devuelveUser(int id) {
@@ -336,10 +343,10 @@ public class Fernanbnb {
         Usuario user = null;
         boolean tipoPropietario = false;
         boolean tipoUsuario = false;
-        if (vivienda.equals(p1.getVivienda())) {
+        if (p1 != null && vivienda.equals(p1.getVivienda())) {
             prop = p1;
             tipoPropietario = true;
-        } else if (vivienda.equals(p2.getVivienda())) {
+        } else if (p2 != null && vivienda.equals(p2.getVivienda())) {
             prop = p2;
             tipoPropietario = false;
         }
@@ -374,20 +381,6 @@ public class Fernanbnb {
         return false;
     }
 
-    public boolean compruebaFecha(String fechaTeclado) {
-        if (fechaTeclado.length() != 10) {
-            return false;
-        } else {
-            int dayTeclado = Integer.parseInt(fechaTeclado.substring(0, 2));
-            int monthTeclado = Integer.parseInt(fechaTeclado.substring(3, 5));
-            int yearTeclado = Integer.parseInt(fechaTeclado.substring(6));
-
-            if (dayTeclado < 1 || dayTeclado > 31) return false;
-            if (monthTeclado < 1 || monthTeclado > 12) return false;
-            if (yearTeclado < 1) return false;
-        }
-        return true;
-    }
 
 }
 

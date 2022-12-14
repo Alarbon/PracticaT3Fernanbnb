@@ -88,7 +88,7 @@ public class Vivienda {
     @Override
     public String toString() {
         return
-                " ┌───────────────────┤ Alojamiento con ID:" + id + " ├───────────────────┐\n" +
+                " \n ┌───────────────────┤ Alojamiento con ID: " + id + " ├───────────────────┐\n" +
                         "   -Vivienda: " + tipoVivienda + " en " + direccion.getLocalidad() + "\n" +
                         "   -Dirección: " + direccion.toString() + "\n" +
                         "   -Número de huéspedes máximos: " + huespedMax + "\n" +

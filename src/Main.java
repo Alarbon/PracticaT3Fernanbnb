@@ -7,12 +7,11 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Usuario u1 = new Usuario("Gil", "Gil", "1234", "666777888");
+        Usuario u1 = null;
         Usuario u2 = null;
-        Propietario p1 = new Propietario("jesus", "Yisus", "1234", "666777888");
-        p1.setVivienda(new Vivienda(new Direccion("Callesita", 4, "JAEN"), 1, 4, 1));
+        Propietario p1 = null;
         Propietario p2 = null;
-        Administrador admin = new Administrador("Adri", "Alarbon", "1324", "666777888");
+        Administrador admin = null;
         Fernanbnb f = new Fernanbnb();
         Reserva reserva = null;
         Vivienda vivienda = null;
@@ -56,7 +55,7 @@ public class Main {
                             System.out.print("Seleccione una opción: ");
                             op = Integer.parseInt(s.nextLine());
                             switch (op) {
-                                case 1://Búsqueda de alojamientos todo
+                                case 1://Búsqueda de alojamientos
                                     System.out.print("Introduce una localidad para buscar: ");
                                     localidadBusqueda = s.nextLine().toUpperCase();
                                     if (f.compruebaLocalidad(localidadBusqueda) == null) {
@@ -70,37 +69,54 @@ public class Main {
                                         break;
                                     }
 
-
                                     System.out.print("Introduzca una fecha, en formato (yyyy-mm-dd): ");
                                     fechaInicioTeclado = s.nextLine();
                                     fechaInicio = LocalDate.parse(fechaInicioTeclado);
                                     System.out.print("Introduzca una fecha de salida, en formato (yyyy-mm-dd): ");
                                     fechaFinalTeclado = s.nextLine();
                                     fechaFinal = LocalDate.parse(fechaFinalTeclado);
-                                    System.out.println(fechaInicio);
+                                    Utils.esperar();
+
                                     if (f.compruebaFechaParaReserva(fechaInicio, fechaFinal, numHuespedBusqueda, localidadBusqueda)) {
-                                        System.out.println("La vivienda disponible es:");
+                                        System.out.println("La(s) vivienda(s) disponible(s) es/son: ");
+                                        if (p1 != null && p1.getVivienda() != null && p1.getVivienda().getDireccion().getLocalidad().equals(localidadBusqueda)) {
+                                            System.out.println(p1.getVivienda().toString());
+                                        }
+                                        if (p2 != null && p2.getVivienda() != null && p2.getVivienda().getDireccion().getLocalidad().equals(localidadBusqueda)) {
+                                            System.out.println(p2.getVivienda().toString());
+                                        }
+                                        System.out.println("¡Si te ha interesado toma nota del ID! :)");
+                                        System.out.println("Pulse enter para continuar.");
+                                        s.nextLine();
 
-                                        //so System.out.println(f.compruebaHuesped(numHuespedBusqueda, localidadBusqueda).toString());
-                                        System.out.println("¿ Quieres reservarla ? (y/n)");
-                                        String elec = s.nextLine();
-                                        if (elec.equals("y")) {
-                                            if (f.compruebaFechaParaReserva(fechaInicio, fechaFinal, numHuespedBusqueda, localidadBusqueda)) {
-                                                reserva = new Reserva(fechaInicio, fechaFinal, f.compruebaHuesped(numHuespedBusqueda, localidadBusqueda), f.devuelveUser(numGuardaUsuario));
-                                                if (f.anioadeReserva(reserva, f.compruebaHuesped(numHuespedBusqueda, localidadBusqueda), numGuardaUsuario)) {
-                                                    System.out.println("Reserva realizada");
-                                                    System.out.println(reserva.toString());
+                                        System.out.println("¿Quieres realizar la reserva? (Y/N)");
+                                        String elec = s.nextLine().toUpperCase();
+                                        if (elec.equals("Y")) {
+                                            System.out.print("Escribe el ID del alojamiento que quiere reservar: ");
+                                            String idTeclado = s.nextLine();
+                                            if (p1.getVivienda().getId().equals(idTeclado)) {
+                                                if (numGuardaUsuario == 1)
+                                                    reserva = new Reserva(fechaInicio, fechaFinal, p1.getVivienda(), u1);
+                                                if (numGuardaUsuario == 11)
+                                                    reserva = new Reserva(fechaInicio, fechaFinal, p1.getVivienda(), u2);
+                                                Utils.esperar();
+                                                System.out.println(f.anioadeReserva(reserva, p1.getVivienda(), numGuardaUsuario) ? "Reserva realizada con éxito. " : "La reserva no se ha podido realizar, intentelo más tarde.");
 
-                                                } else System.out.println("Error al realizar la reserva");
+                                            } else if (p2.getVivienda().getId().equals(idTeclado)) {
+                                                if (numGuardaUsuario == 1)
+                                                    reserva = new Reserva(fechaInicio, fechaFinal, p2.getVivienda(), u1);
+                                                if (numGuardaUsuario == 11)
+                                                    reserva = new Reserva(fechaInicio, fechaFinal, p2.getVivienda(), u2);
+                                                Utils.esperar();
+                                                System.out.println(f.anioadeReserva(reserva, p2.getVivienda(), numGuardaUsuario) ? "Reserva realizada con éxito. " : "La reserva no se ha podido realizar, intentelo más tarde.");
                                             }
                                         }
 
                                     } else {
-                                        System.out.println("Est ocupado entre esas fechas");
+                                        System.out.println("Estas fechas no están disponibles. ¡Prueba otras! :)");
                                     }
-
-
-                                    Utils.esperar();
+                                    System.out.println("Pulse enter para continuar.");
+                                    s.nextLine();
 
 
                                     break;
@@ -145,19 +161,169 @@ public class Main {
                                             System.out.println("Usted no tiene ninguna reserva.");
                                         }
                                         if (u1.getReserva1() != null && u1.getReserva2() == null) {
+                                            do {
+                                                System.out.print("¿Quieres eliminar tu reserva? (Y/N): ");
+                                                switch (s.nextLine().toUpperCase()) {
+                                                    case "Y" -> {
+                                                        u1.setReserva1(null);
+                                                        System.out.println("¡Reserva eliminada! Vuelva a añadir su nueva reserva en 'Busqueda de alojamientos'. Pulse enter para continuar.");
+                                                        s.nextLine();
+                                                        op = 0;
+                                                    }
+                                                    case "N" -> {
+                                                        System.out.println("La reserva no ha sido eliminada. Pulse enter para continuar.");
+                                                        s.nextLine();
+                                                        op = 0;
+                                                    }
+                                                    default ->
+                                                            System.out.println("Por favor, seleccione \"Y\"  o \"N\".");
+                                                }
+                                            } while (op != 0);
+
+                                        }
+                                        if (u1.getReserva1() == null && u1.getReserva2() != null) {
+                                            do {
+                                                System.out.print("¿Quieres eliminar tu reserva? (Y/N): ");
+                                                switch (s.nextLine().toUpperCase()) {
+                                                    case "Y" -> {
+                                                        u1.setReserva2(null);
+                                                        System.out.println("¡Reserva eliminada! Vuelva a añadir su nueva reserva en 'Busqueda de alojamientos'. ");
+                                                        op = 0;
+                                                    }
+                                                    case "N" -> {
+                                                        System.out.println("La reserva no ha sido eliminada.");
+                                                        op = 0;
+                                                    }
+                                                    default ->
+                                                            System.out.println("Por favor, seleccione \"Y\"  o \"N\".");
+                                                }
+                                            } while (op != 0);
 
                                         }
                                         if (u1.getReserva1() != null && u1.getReserva2() != null) {
+                                            do {
+                                                System.out.print("¿Quieres eliminar tus reservas? (Y/N): ");
+                                                switch (s.nextLine().toUpperCase()) {
+                                                    case "Y" -> {
+                                                        u1.setReserva1(null);
+                                                        u1.setReserva2(null);
+                                                        System.out.println("¡Reservaz eliminadaz! Vuelva a añadir sus nuevas reservas en 'Busqueda de alojamientos'.");
+                                                        op = 0;
+                                                    }
+                                                    case "N" -> {
+                                                        do {
+                                                            System.out.print("¿Que reserva quieres eliminar? (1/2) o 'N' para ninguna: ");
+                                                            switch (s.nextLine().toUpperCase()) {
+                                                                case "1" -> {
+                                                                    u1.setReserva1(null);
+                                                                    System.out.println("¡Reserva eliminada! Vuelva a añadir su nueva reserva en 'Busqueda de alojamientos'.");
+                                                                    op = 0;
+                                                                }
+                                                                case "2" -> {
+                                                                    u1.setReserva2(null);
+                                                                    System.out.println("¡Reserva eliminada! Vuelva a añadir su nueva reserva en 'Busqueda de alojamientos'.");
+                                                                    op = 0;
+                                                                }
+                                                                case "N" -> {
+                                                                    System.out.println("Las reservas no han sido eliminadas.");
+                                                                    op = 0;
+                                                                }
+                                                                default ->
+                                                                        System.out.println("Por favor, seleccione '1' o '2'.");
+                                                            }
+                                                        } while (op != 0);
+
+                                                    }
+                                                    default ->
+                                                            System.out.println("Por favor, seleccione \"Y\"  o \"N\".");
+                                                }
+                                            } while (op != 0);
 
                                         }
                                     }
                                     if (numGuardaUsuario == 11) {
-                                        if (u2.getReserva1() == null && u2.getReserva2() == null)
+                                        if (u2.getReserva1() == null && u2.getReserva2() == null) {
                                             System.out.println("Usted no tiene ninguna reserva.");
-                                        if (u2.getReserva1() != null && u2.getReserva2() == null)
+                                        }
+                                        if (u2.getReserva1() != null && u2.getReserva2() == null) {
+                                            do {
+                                                System.out.print("¿Quieres eliminar tu reserva? (Y/N): ");
+                                                switch (s.nextLine().toUpperCase()) {
+                                                    case "Y" -> {
+                                                        u2.setReserva1(null);
+                                                        System.out.println("¡Reserva eliminada! Vuelva a añadir su nueva reserva en 'Busqueda de alojamientos'. Pulse enter para continuar.");
+                                                        s.nextLine();
+                                                        op = 0;
+                                                    }
+                                                    case "N" -> {
+                                                        System.out.println("La reserva no ha sido eliminada. Pulse enter para continuar.");
+                                                        s.nextLine();
+                                                        op = 0;
+                                                    }
+                                                    default ->
+                                                            System.out.println("Por favor, seleccione \"Y\"  o \"N\".");
+                                                }
+                                            } while (op != 0);
 
-                                            System.out.println(u2.getReserva1().toString());
+                                        }
+                                        if (u2.getReserva1() == null && u2.getReserva2() != null) {
+                                            do {
+                                                System.out.print("¿Quieres eliminar tu reserva? (Y/N): ");
+                                                switch (s.nextLine().toUpperCase()) {
+                                                    case "Y" -> {
+                                                        u2.setReserva2(null);
+                                                        System.out.println("¡Reserva eliminada! Vuelva a añadir su nueva reserva en 'Busqueda de alojamientos'. ");
+                                                        op = 0;
+                                                    }
+                                                    case "N" -> {
+                                                        System.out.println("La reserva no ha sido eliminada.");
+                                                        op = 0;
+                                                    }
+                                                    default ->
+                                                            System.out.println("Por favor, seleccione \"Y\"  o \"N\".");
+                                                }
+                                            } while (op != 0);
+
+                                        }
                                         if (u2.getReserva1() != null && u2.getReserva2() != null) {
+                                            do {
+                                                System.out.print("¿Quieres eliminar tus reservas? (Y/N): ");
+                                                switch (s.nextLine().toUpperCase()) {
+                                                    case "Y" -> {
+                                                        u2.setReserva1(null);
+                                                        u2.setReserva2(null);
+                                                        System.out.println("¡Reservaz eliminadaz! Vuelva a añadir sus nuevas reservas en 'Busqueda de alojamientos'.");
+                                                        op = 0;
+                                                    }
+                                                    case "N" -> {
+                                                        do {
+                                                            System.out.print("¿Que reserva quieres eliminar? (1/2) o 'N' para ninguna: ");
+                                                            switch (s.nextLine().toUpperCase()) {
+                                                                case "1" -> {
+                                                                    u2.setReserva1(null);
+                                                                    System.out.println("¡Reserva eliminada! Vuelva a añadir su nueva reserva en 'Busqueda de alojamientos'.");
+                                                                    op = 0;
+                                                                }
+                                                                case "2" -> {
+                                                                    u2.setReserva2(null);
+                                                                    System.out.println("¡Reserva eliminada! Vuelva a añadir su nueva reserva en 'Busqueda de alojamientos'.");
+                                                                    op = 0;
+                                                                }
+                                                                case "N" -> {
+                                                                    System.out.println("Las reservas no han sido eliminadas.");
+                                                                    op = 0;
+                                                                }
+                                                                default ->
+                                                                        System.out.println("Por favor, seleccione '1' o '2'.");
+                                                            }
+                                                        } while (op != 0);
+
+                                                    }
+                                                    default ->
+                                                            System.out.println("Por favor, seleccione \"Y\"  o \"N\".");
+                                                }
+                                            } while (op != 0);
+
 
                                         }
                                     }
@@ -340,6 +506,8 @@ public class Main {
                                         System.out.println(p1.getVivienda().toString());
                                     else if (p2.getVivienda() != null && numGuardaUsuario == 22)
                                         System.out.println(p2.getVivienda().toString());
+                                    System.out.println("Pulse enter para continuar.");
+                                    s.nextLine();
                                     break;
                                 case 2://Añadir o editar mis viviendas
                                     if ((numGuardaUsuario == 2 && p1.getVivienda() == null) || (numGuardaUsuario == 22 && p2.getVivienda() == null)) {
@@ -450,10 +618,81 @@ public class Main {
 
 
                                     break;
-                                case 3://Ver las reservas de mis viviendas todo
+                                case 3://Ver las reservas de mis viviendas
+                                    if (numGuardaUsuario == 2) {
+                                        if (p1.getVivienda().getReserva1() == null && p1.getVivienda().getReserva2() == null) {
+                                            System.out.println("Usted no tiene ninguna reserva.");
+                                        } else if (p1.getVivienda().getReserva1() != null && p1.getVivienda().getReserva2() == null) {
+                                            System.out.println(p1.getVivienda().getReserva1().toString());
+                                        } else if (p1.getVivienda().getReserva1() != null && p1.getVivienda().getReserva2() != null) {
+                                            System.out.println(p1.getVivienda().getReserva1().toString());
+                                            System.out.println();
+                                            System.out.println(p1.getVivienda().getReserva2().toString());
 
+
+                                        }
+
+                                    } else if (numGuardaUsuario == 22) {
+                                        if (p2.getVivienda().getReserva1() == null && p2.getVivienda().getReserva2() == null) {
+                                            System.out.println("Usted no tiene ninguna reserva.");
+                                        } else if (p2.getVivienda().getReserva1() != null && p2.getVivienda().getReserva2() == null) {
+                                            System.out.println(p2.getVivienda().getReserva1().toString());
+                                        } else if (p2.getVivienda().getReserva1() != null && p2.getVivienda().getReserva2() != null) {
+                                            System.out.println(p2.getVivienda().getReserva1().toString());
+                                            System.out.println();
+                                            System.out.println(p2.getVivienda().getReserva2().toString());
+
+                                        }
+
+                                    }
+                                    System.out.println("Pulse enter para continuar...");
+                                    s.nextLine();
                                     break;
-                                case 4://Establecer un periodo de no disponible de una vivienda todo
+                                case 4://Establecer un periodo de no disponible de una vivienda
+                                    do {
+                                        System.out.print("¿Quiere poner unas fechas determinadas como no disponible en su vivienda? (Y/N): ");
+                                        switch (s.nextLine().toUpperCase()) {
+                                            case "Y" -> {
+                                                System.out.print("Introduzca una fecha, en formato (yyyy-mm-dd): ");
+                                                fechaInicioTeclado = s.nextLine();
+                                                fechaInicio = LocalDate.parse(fechaInicioTeclado);
+                                                System.out.print("Introduzca una fecha de salida, en formato (yyyy-mm-dd): ");
+                                                fechaFinalTeclado = s.nextLine();
+                                                fechaFinal = LocalDate.parse(fechaFinalTeclado);
+                                                if (numGuardaUsuario == 2) {
+                                                    if (p1.getVivienda() == null) {
+                                                        System.out.println("Usted no ha añadido su vivienda aún.");
+                                                    } else {
+                                                        p1.getVivienda().setReserva1(new Reserva(fechaInicio, fechaFinal));
+                                                        p1.getVivienda().setReserva2(new Reserva(fechaInicio, fechaFinal));
+
+                                                        System.out.println("¡Datos actualizados! Pulse enter para continuar.");
+                                                        s.nextLine();
+                                                    }
+                                                } else if (numGuardaUsuario == 22) {
+                                                    if (p2.getVivienda() == null) {
+                                                        System.out.println("Usted no ha añadido su vivienda aún.");
+                                                    } else {
+                                                        p2.getVivienda().setReserva1(new Reserva(fechaInicio, fechaFinal));
+                                                        p2.getVivienda().setReserva2(new Reserva(fechaInicio, fechaFinal));
+                                                        System.out.println("¡Datos actualizados! Pulse enter para continuar.");
+                                                        s.nextLine();
+                                                    }
+
+                                                }
+                                                op = 0;
+                                            }
+                                            case "N" -> {
+                                                System.out.println("Pulse enter para continuar.");
+                                                s.nextLine();
+                                                op = 0;
+                                                break;
+                                            }
+                                            default ->
+                                                    System.out.println("Por favor, seleccione \"Y\" para guardar los datos o \"N\" para no guardar los datos cambiados.");
+                                        }
+                                    }
+                                    while (op != 0);
 
                                     break;
                                 case 5://Ver mi perfil
@@ -634,6 +873,8 @@ public class Main {
                                         System.out.println("Esta vivienda le pertenece al usuario propietario " + p2.getNombreUsuario());
                                         System.out.println(p2.getVivienda().toString());
                                     }
+                                    if (p1.getVivienda() == null && p2.getVivienda() == null)
+                                        System.out.println("Actualmente no hay viviendas en alquiler.");
                                     System.out.println("Pulse enter para continuar.");
                                     s.nextLine();
 
@@ -668,7 +909,36 @@ public class Main {
                                     System.out.println("Pulse enter para continuar.");
                                     s.nextLine();
                                     break;
-                                case 3://Ver todas las reservas de viviendas todo
+                                case 3://Ver todas las reservas de viviendas
+                                    if (u1.getReserva1() == null && u1.getReserva2() == null) {
+                                        System.out.println("Usted no tiene ninguna reserva.");
+                                    }
+                                    if (u1.getReserva1() != null && u1.getReserva2() == null) {
+                                        System.out.println("Esta es la reserva 1 de " + u1.getNombreUsuario());
+                                        System.out.println(u1.getReserva1().toString());
+                                    }
+                                    if (u1.getReserva1() != null && u1.getReserva2() != null) {
+                                        System.out.println("Esta es la reserva 1 de " + u1.getNombreUsuario());
+                                        System.out.println(u1.getReserva1().toString());
+                                        System.out.println();
+                                        System.out.println("Esta es la reserva 2 de " + u1.getNombreUsuario());
+                                        System.out.println(u1.getReserva2().toString());
+                                    }
+                                    if (u2.getReserva1() == null && u2.getReserva2() == null)
+                                        System.out.println("Usted no tiene ninguna reserva.");
+                                    if (u2.getReserva1() != null && u2.getReserva2() == null)
+                                        System.out.println("Esta es la reserva 1 de " + u2.getNombreUsuario());
+                                    System.out.println(u2.getReserva1().toString());
+                                    if (u2.getReserva1() != null && u2.getReserva2() != null) {
+                                        System.out.println("Esta es la reserva 1 de " + u2.getNombreUsuario());
+                                        System.out.println(u2.getReserva1().toString());
+                                        System.out.println();
+                                        System.out.println("Esta es la reserva 2 de " + u2.getNombreUsuario());
+                                        System.out.println(u2.getReserva2().toString());
+                                    }
+
+                                    System.out.println("Pulse enter para continuar.");
+                                    s.nextLine();
 
                                     break;
                                 case 4: //Muestro los datos del usuario administrador
